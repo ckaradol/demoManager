@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1015054323027",
+    "project_id": "fir-778de",
+    "storage_bucket": "fir-778de.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015054323027:android:a0258d34a36b36c09f25a6",
+        "android_client_info": {
+          "package_name": "com.softmobileware.demomanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015054323027-fssuot10lghnbfqi9nere29gr8g38m7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softmobileware.demomanager",
+            "certificate_hash": "3ab68b1a27a20c14e233e72a7d18feebcd00dc85"
+          }
+        },
+        {
+          "client_id": "1015054323027-gi1ongon2gjo0854340fhvrrqoae0tfn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm8-2kHBtmFeT5DtpsaY4YfndbdM8Orsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015054323027-gi1ongon2gjo0854340fhvrrqoae0tfn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1015054323027-g6a1j806qregl1m5n6n0q622e57kotuj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.softmobileware.demomanager"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,41 @@
+import 'package:demomanager/features/auth/login_screen/login_screen.dart';
+import 'package:demomanager/features/auth/register_screen/register_screen.dart';
+import 'package:demomanager/features/home/home_screen.dart';
+import 'package:demomanager/features/splash/splash_screen.dart';
+import 'package:flutter/material.dart';
+
+import 'app_routes.dart';
+
+class AppRouter {
+  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+
+      case AppRoutes.register:
+        return _fadeRoute(const RegisterScreen(), settings);
+      case AppRoutes.splash:
+        return _fadeRoute(const SplashScreen(), settings);
+      case AppRoutes.login:
+        return _fadeRoute(const LoginScreen(), settings);
+      case AppRoutes.home:
+        return _fadeRoute(const HomeScreen(), settings);
+      default:
+        return _fadeRoute(
+          const Scaffold(body: Center(child: Text('Route not found'))),
+          settings,
+        );
+    }
+  }
+
+  static PageRouteBuilder _fadeRoute(Widget page, RouteSettings settings) {
+    return PageRouteBuilder(
+      settings: settings,
+      pageBuilder: (_, __, ___) => page,
+      transitionsBuilder: (_, animation, __, child) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
+    );
+  }
+}

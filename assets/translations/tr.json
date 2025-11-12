@@ -1,0 +1,22 @@
+{
+  "doctor": "Doktor",
+  "sales_representative": "Satış Temsilcisi",
+  "login_title": "Giriş Yap",
+  "register_title": "Kayıt Ol",
+  "email_id": "E-posta Adresi",
+  "password": "Şifre",
+  "forget_password": "Şifreni mi unuttun?",
+  "login_button": "Giriş",
+  "or": "Veya",
+  "sign_up_text": "Hesabın yok mu?",
+  "sign_up_button": "Kayıt Ol",
+  "first_name": "Ad",
+  "last_name": "Soyad",
+  "error_empty_fields": "E-posta ve şifre alanları boş bırakılamaz.",
+  "error_invalid_email": "Geçerli bir e-posta adresi giriniz.",
+  "error_short_password": "Şifre en az 6 karakter olmalıdır.",
+  "login_success": "Giriş başarılı!",
+  "create_account": "Hesap Oluştur",
+  "already_have_account": "Zaten bir hesabın var mı?",
+  "sign_in": "Giriş Yap"
+}

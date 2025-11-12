@@ -1,0 +1,22 @@
+{
+  "doctor": "Doctor",
+  "sales_representative": "Sales Representative",
+  "login_title": "Log In",
+  "email_id": "Email ID",
+  "password": "Password",
+  "forget_password": "Forget Password?",
+  "login_button": "Login",
+  "or": "Or",
+  "sign_up_text": "Don’t have an account?",
+  "sign_up_button": "Sign Up",
+  "register_title": "Sign Up",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "error_empty_fields": "Email and password fields cannot be empty.",
+  "error_invalid_email": "Please enter a valid email address.",
+  "error_short_password": "Password must be at least 6 characters long.",
+  "login_success": "Login successful!",
+  "create_account": "Create Account",
+  "already_have_account": "Already have an account?",
+  "sign_in": "Sign In"
+}
