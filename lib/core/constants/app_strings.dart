@@ -76,4 +76,12 @@ class AppStrings {
   static String get refreshButton => "refresh_button".tr();
   static String get resetMyPassword => "reset_my_password".tr();
   static String get resetPasswordSuccess => "reset_password_success".tr();
+  static String get description => "description".tr();
+  static String get contents => "contents".tr();
+  static String get usage => "usage".tr();
+  static String get suitableFor => "suitable_for".tr();
+  static String get orderNow => "order_now".tr();
+  static String get search => "search".tr();
+  static String get home => "home".tr();
+
 }

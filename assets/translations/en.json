@@ -37,5 +37,12 @@
   "status_pending_message": "Your medical diploma is being reviewed. The approval process usually takes up to 24 hours.",
   "refresh_button": "Check Again",
   "reset_my_password": "Reset my password",
-  "reset_password_success": "Password reset link has been sent to your email address."
+  "reset_password_success": "Password reset link has been sent to your email address.",
+  "description": "Description",
+  "contents": "Contents",
+  "usage": "Usage",
+  "suitable_for": "Suitable For",
+  "order_now": "Order Now",
+  "home": "Home",
+  "search": "Search"
 }

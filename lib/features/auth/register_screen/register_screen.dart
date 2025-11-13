@@ -19,7 +19,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return BlocProvider(
       create: (context) => TextFormCubit(),
       child: BlocBuilder<TextFormCubit, bool>(

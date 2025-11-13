@@ -37,5 +37,12 @@
   "status_pending_message": "Tıp diplomanız inceleniyor. Onay süreci genelde 24 saat içinde tamamlanır.",
   "refresh_button": "Yeniden Kontrol Et",
   "reset_my_password": "Şifremi Sıfırla",
-  "reset_password_success": "Şifre sıfırlama linki e-mail adresinize gönderildi"
+  "reset_password_success": "Şifre sıfırlama linki e-mail adresinize gönderildi",
+  "description": "Açıklama",
+  "contents": "İçerik",
+  "usage": "Kullanım",
+  "suitable_for": "Uygun Olduğu Alanlar",
+  "order_now": "Sipariş Ver",
+  "home": "Anasayfa",
+  "search": "Ara"
 }

@@ -19,7 +19,7 @@ class VerificationWaitScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) => DiplomaUploadCubit(repository: DiplomaService()),
       child: Scaffold(
-        appBar: AppBar(title: Text(AppStrings.accountStatus), elevation: 0, backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+        appBar: AppBar(title: Text(AppStrings.accountStatus,style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)), elevation: 0, backgroundColor: Theme.of(context).scaffoldBackgroundColor),
         body: Padding(
           padding:  EdgeInsets.all(AppSpacing.defaultSpace),
           child: Builder(

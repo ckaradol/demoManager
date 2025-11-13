@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demomanager/core/constants/app_strings.dart';
 import 'package:demomanager/core/services/firestore_service/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb;
@@ -77,7 +78,10 @@ class FirebaseAuthService implements AuthRepository {
       final user = userCred.user;
 
       if (user != null) {
-        await FirestoreService().setUserValue(userId: user.uid, email: user.email ?? "", fullName: user.displayName ?? "");
+        DocumentSnapshot<Map<String, dynamic>> data= await FirebaseFirestore.instance.collection("users").doc(user.uid).get();
+        if(!data.exists) {
+          await FirestoreService().setUserValue(userId: user.uid, email: user.email ?? "", fullName: user.displayName ?? "");
+        }
       }
       return user == null ? null : AppUser.fromFirebaseUser(user);
     } on fb.FirebaseAuthException catch (e) {
