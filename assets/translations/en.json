@@ -35,5 +35,7 @@
   "status_rejected_message": "Your documents could not be verified. Please upload a valid medical diploma.",
   "status_pending_title": "Verification Pending",
   "status_pending_message": "Your medical diploma is being reviewed. The approval process usually takes up to 24 hours.",
-  "refresh_button": "Check Again"
+  "refresh_button": "Check Again",
+  "reset_my_password": "Reset my password",
+  "reset_password_success": "Password reset link has been sent to your email address."
 }

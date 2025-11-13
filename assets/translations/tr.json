@@ -35,5 +35,7 @@
   "status_rejected_message": "Belgeler doğrulanamadı. Lütfen geçerli bir diploma yükleyin.",
   "status_pending_title": "Doğrulama Bekleniyor",
   "status_pending_message": "Tıp diplomanız inceleniyor. Onay süreci genelde 24 saat içinde tamamlanır.",
-  "refresh_button": "Yeniden Kontrol Et"
+  "refresh_button": "Yeniden Kontrol Et",
+  "reset_my_password": "Şifremi Sıfırla",
+  "reset_password_success": "Şifre sıfırlama linki e-mail adresinize gönderildi"
 }

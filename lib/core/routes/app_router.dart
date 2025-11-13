@@ -6,12 +6,12 @@ import 'package:demomanager/features/splash/splash_screen.dart';
 import 'package:demomanager/features/verification_wait_screen/verification_wait_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/forgot_password/forgot_password.dart';
 import 'app_routes.dart';
 
 class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-
       case AppRoutes.register:
         return _fadeRoute(const RegisterScreen(), settings);
       case AppRoutes.splash:
@@ -24,11 +24,10 @@ class AppRouter {
         return _fadeRoute(const DiplomaUploadScreen(), settings);
       case AppRoutes.wait:
         return _fadeRoute(const VerificationWaitScreen(), settings);
+      case AppRoutes.forgotPassword:
+        return _fadeRoute(const ForgotPassword(), settings);
       default:
-        return _fadeRoute(
-          const Scaffold(body: Center(child: Text('Route not found'))),
-          settings,
-        );
+        return _fadeRoute(const Scaffold(body: Center(child: Text('Route not found'))), settings);
     }
   }
 
@@ -37,10 +36,7 @@ class AppRouter {
       settings: settings,
       pageBuilder: (_, __, ___) => page,
       transitionsBuilder: (_, animation, __, child) {
-        return FadeTransition(
-          opacity: animation,
-          child: child,
-        );
+        return FadeTransition(opacity: animation, child: child);
       },
     );
   }

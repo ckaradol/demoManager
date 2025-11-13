@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:demomanager/core/constants/app_strings.dart';
 import 'package:demomanager/core/services/firestore_service/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:google_sign_in/google_sign_in.dart';
@@ -55,7 +56,12 @@ class FirebaseAuthService implements AuthRepository {
 
   @override
   Future<void> sendPasswordResetEmail(String email) async {
-    await _auth.sendPasswordResetEmail(email: email);
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      showToast(AppStrings.diplomaSuccessTitle, AppStrings.resetPasswordSuccess, false);
+    } on fb.FirebaseAuthException catch (e) {
+      showToast("Error", e.message ?? "", true);
+    }
   }
 
   @override

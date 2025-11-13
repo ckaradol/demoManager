@@ -93,7 +93,14 @@ class LoginScreen extends StatelessWidget {
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
-                                children: [TextButton(onPressed: () {}, child: Text(AppStrings.forgetPassword))],
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      NavigatorService.pushNamed(AppRoutes.forgotPassword);
+                                    },
+                                    child: Text(AppStrings.forgetPassword),
+                                  ),
+                                ],
                               ),
                               AppButton(
                                 loading: context.read<TextFormCubit>().loading,
@@ -129,7 +136,6 @@ class LoginScreen extends StatelessWidget {
 
                                   await FirebaseAuthService().signInWithEmailPassword(mail, password);
                                   context.read<TextFormCubit>().changeLoading(false);
-
                                 },
                               ),
                             ],
@@ -147,12 +153,24 @@ class LoginScreen extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    InkWell(
-                                      onTap: () {
-                                        FirebaseAuthService().signInWithGoogle();
-                                      },
-                                      child: AppImages.google.toSvg(),
-                                    ),
+                                    if (context.read<TextFormCubit>().loading)
+                                      Container(
+                                        padding: EdgeInsets.all(13),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(color: Color(0xff8AB7F4)),
+                                          borderRadius: BorderRadius.circular(12),
+                                        ),
+                                        child: CircularProgressIndicator(constraints: BoxConstraints(minHeight: 20, minWidth: 20)),
+                                      )
+                                    else
+                                      InkWell(
+                                        onTap: () async {
+                                          context.read<TextFormCubit>().changeLoading(true);
+                                          await FirebaseAuthService().signInWithGoogle();
+                                          context.read<TextFormCubit>().changeLoading(false);
+                                        },
+                                        child: AppImages.google.toSvg(),
+                                      ),
                                   ],
                                 ),
                                 Row(
@@ -160,9 +178,11 @@ class LoginScreen extends StatelessWidget {
                                   children: [
                                     Text(AppStrings.signUpText),
                                     TextButton(
-                                      onPressed: () {
-                                        NavigatorService.pushNamed(AppRoutes.register);
-                                      },
+                                      onPressed: context.read<TextFormCubit>().loading
+                                          ? null
+                                          : () {
+                                              NavigatorService.pushNamed(AppRoutes.register);
+                                            },
                                       child: Text(AppStrings.signUpButton),
                                     ),
                                   ],
@@ -183,5 +203,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-
