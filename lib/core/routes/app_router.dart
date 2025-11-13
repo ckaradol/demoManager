@@ -1,5 +1,6 @@
 import 'package:demomanager/features/auth/login_screen/login_screen.dart';
 import 'package:demomanager/features/auth/register_screen/register_screen.dart';
+import 'package:demomanager/features/diploma_upload/diploma_upload_screen.dart';
 import 'package:demomanager/features/home/home_screen.dart';
 import 'package:demomanager/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class AppRouter {
         return _fadeRoute(const LoginScreen(), settings);
       case AppRoutes.home:
         return _fadeRoute(const HomeScreen(), settings);
+      case AppRoutes.upload:
+        return _fadeRoute(const DiplomaUploadScreen(), settings);
       default:
         return _fadeRoute(
           const Scaffold(body: Center(child: Text('Route not found'))),

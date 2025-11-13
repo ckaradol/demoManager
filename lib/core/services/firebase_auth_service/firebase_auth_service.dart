@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:demomanager/core/routes/app_routes.dart';
+import 'package:demomanager/core/services/firestore_service/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../models/app_user.dart';
 import '../../repository/auth_repository.dart';
-import '../navigator_service/navigator_service.dart';
 import '../show_toast.dart';
 
 class FirebaseAuthService implements AuthRepository {
@@ -37,6 +36,7 @@ class FirebaseAuthService implements AuthRepository {
       final cred = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       if (displayName != null && cred.user != null) {
         await cred.user!.updateDisplayName(displayName);
+        await FirestoreService().setUserValue(userId: cred.user?.uid ?? "", email: email, fullName: displayName);
         await cred.user!.reload();
       }
       return cred.user == null ? null : AppUser.fromFirebaseUser(cred.user!);
@@ -69,8 +69,9 @@ class FirebaseAuthService implements AuthRepository {
 
       final userCred = await _auth.signInWithCredential(credential);
       final user = userCred.user;
-      if(user!=null) {
-        NavigatorService.pushNamed(AppRoutes.home);
+
+      if (user != null) {
+        await FirestoreService().setUserValue(userId: user.uid, email: user.email ?? "", fullName: user.displayName ?? "");
       }
       return user == null ? null : AppUser.fromFirebaseUser(user);
     } on fb.FirebaseAuthException catch (e) {

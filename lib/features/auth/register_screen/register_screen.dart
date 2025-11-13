@@ -4,11 +4,14 @@ import 'package:demomanager/core/enums/assets/app_images.dart';
 import 'package:demomanager/core/extensions/app/app_column_gap_ext.dart';
 import 'package:demomanager/core/extensions/assets/app_images_ext.dart';
 import 'package:demomanager/core/services/navigator_service/navigator_service.dart';
+import 'package:demomanager/core/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/enums/app/app_spacing.dart';
 import '../../../core/routes/app_routes.dart';
+import '../../../core/services/firebase_auth_service/firebase_auth_service.dart';
+import '../../../core/services/show_toast.dart';
 import '../../../core/widgets/app_text_form_field.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -16,6 +19,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return BlocProvider(
       create: (context) => TextFormCubit(),
       child: BlocBuilder<TextFormCubit, bool>(
@@ -69,14 +73,46 @@ class RegisterScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+
                             ],
                           ).withGap(AppSpacing.mediumSpace),
-                          ElevatedButton(
-                            style: ButtonStyle(fixedSize: WidgetStatePropertyAll(Size(double.maxFinite, 54))),
-                            onPressed: () {
-                              print(context.read<TextFormCubit>().controllerPassword.text);
+                          AppButton(
+                            loading:context.read<TextFormCubit>().loading ,
+                            text: AppStrings.createAccount,
+                            onTap: () async {
+                              context.read<TextFormCubit>().changeLoading(true);
+                              String mail = context.read<TextFormCubit>().controllerMail.text.trim();
+                              String firstName = context.read<TextFormCubit>().controllerFirstName.text.trim();
+                              String lastName = context.read<TextFormCubit>().controllerLastName.text.trim();
+                              String password = context.read<TextFormCubit>().controllerPassword.text.trim();
+
+                              if (mail.isEmpty || password.isEmpty) {
+                                context.read<TextFormCubit>().changeLoading(false);
+
+                                showToast("Hata", AppStrings.errorEmptyFields, true);
+                                return;
+                              }
+
+                              final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                              if (!emailRegex.hasMatch(mail)) {
+                                context.read<TextFormCubit>().changeLoading(false);
+
+                                showToast("Hata", AppStrings.errorInvalidEmail, true);
+
+                                return;
+                              }
+
+                              if (password.length < 6) {
+                                context.read<TextFormCubit>().changeLoading(false);
+
+                                showToast("Hata", AppStrings.errorShortPassword, true);
+
+                                return;
+                              }
+
+                              await FirebaseAuthService().signUpWithEmailPassword(mail, password, displayName: "$firstName $lastName");
+                              context.read<TextFormCubit>().changeLoading(false);
                             },
-                            child: Text(AppStrings.createAccount),
                           ),
 
                           Row(

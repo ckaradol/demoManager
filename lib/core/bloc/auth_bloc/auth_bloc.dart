@@ -14,7 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       Future.delayed(Duration(seconds: 1)).then((_) {
         FirebaseAuthService().authStateChanges().listen((value) {
           if (value != null) {
-            NavigatorService.pushAndRemoveUntil(AppRoutes.home);
+            NavigatorService.pushAndRemoveUntil(AppRoutes.upload);
             add(LoggedInEvent(value));
           } else {
             NavigatorService.pushAndRemoveUntil(AppRoutes.login);

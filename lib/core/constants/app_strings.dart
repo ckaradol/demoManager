@@ -21,4 +21,13 @@ class AppStrings {
   static String get or => "or".tr();
   static String get signUpText => "sign_up_text".tr();
   static String get signUpButton => "sign_up_button".tr();
+  static String get diplomaTitle => "diploma_title".tr();
+  static String get diplomaNoFile => "diploma_no_file".tr();
+  static String get diplomaChooseFile => "diploma_choose_file".tr();
+  static String get diplomaUpload => "diploma_upload".tr();
+  static String diplomaLoadingPercent(String percent) => "diploma_loading_percent".tr(args: [percent]);
+  static String get diplomaSuccessTitle => "diploma_success_title".tr();
+  static String get diplomaSuccessMessage => "diploma_success_message".tr();
+  static String get diplomaHint => "diploma_hint".tr();
+  static String get diplomaUploading => "diploma_uploading".tr();
 }

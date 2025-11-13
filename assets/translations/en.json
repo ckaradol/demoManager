@@ -18,5 +18,14 @@
   "login_success": "Login successful!",
   "create_account": "Create Account",
   "already_have_account": "Already have an account?",
-  "sign_in": "Sign In"
+  "sign_in": "Sign In",
+  "diploma_title": "Upload Medical Diploma",
+  "diploma_no_file": "No file selected yet",
+  "diploma_choose_file": "Choose File",
+  "diploma_upload": "Upload",
+  "diploma_success_title": "Success",
+  "diploma_success_message": "Diploma uploaded successfully, awaiting approval.",
+  "diploma_hint": "🩺 You can only upload PDF or image files. After the documents are reviewed, your account will be approved.",
+  "diploma_uploading": "Uploading",
+  "diploma_loading_percent": "Loading %{}"
 }

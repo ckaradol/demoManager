@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/enums/app/app_spacing.dart';
 import '../../../core/services/navigator_service/navigator_service.dart';
+import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_text_form_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -183,21 +184,4 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class AppButton extends StatelessWidget {
-  final bool loading;
-  final Function()? onTap;
-  final String text;
 
-  const AppButton({super.key, this.onTap, required this.text,this.loading=false});
-
-  @override
-  Widget build(BuildContext context) {
-
-    return ElevatedButton(
-
-      style: ButtonStyle(fixedSize: WidgetStatePropertyAll(Size(double.maxFinite, 54))),
-      onPressed:loading?null: onTap,
-      child: loading?CircularProgressIndicator(color: Theme.of(context).colorScheme.onPrimary,): Text(text),
-    );
-  }
-}
