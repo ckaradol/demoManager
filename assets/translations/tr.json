@@ -27,5 +27,13 @@
   "diploma_success_message": "Diploma başarıyla yüklendi, onay bekleniyor.",
   "diploma_hint": "🩺 Yalnızca PDF veya görüntü dosyalarını yükleyebilirsiniz. Belgeler incelendikten sonra hesabınız onaylanır.",
   "diploma_uploading": "Yükleniyor",
-  "diploma_loading_percent": "Yükleme %{}"
+  "diploma_loading_percent": "Yükleme %{}",
+  "account_status": "Hesap Durumu",
+  "status_approved_title": "Hesabınız Onaylandı",
+  "status_approved_message": "Tebrikler! Artık uygulamanın tüm özelliklerini kullanabilirsiniz.",
+  "status_rejected_title": "Doğrulama Reddedildi",
+  "status_rejected_message": "Belgeler doğrulanamadı. Lütfen geçerli bir diploma yükleyin.",
+  "status_pending_title": "Doğrulama Bekleniyor",
+  "status_pending_message": "Tıp diplomanız inceleniyor. Onay süreci genelde 24 saat içinde tamamlanır.",
+  "refresh_button": "Yeniden Kontrol Et"
 }

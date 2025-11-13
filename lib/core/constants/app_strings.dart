@@ -30,4 +30,17 @@ class AppStrings {
   static String get diplomaSuccessMessage => "diploma_success_message".tr();
   static String get diplomaHint => "diploma_hint".tr();
   static String get diplomaUploading => "diploma_uploading".tr();
+  static String get accountStatus => "account_status".tr();
+
+  static String get statusApprovedTitle => "status_approved_title".tr();
+  static String get statusApprovedMessage => "status_approved_message".tr();
+
+  static String get statusRejectedTitle => "status_rejected_title".tr();
+  static String get statusRejectedMessage => "status_rejected_message".tr();
+
+  static String get statusPendingTitle => "status_pending_title".tr();
+  static String get statusPendingMessage => "status_pending_message".tr();
+
+  static String get refreshButton => "refresh_button".tr();
+
 }

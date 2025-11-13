@@ -5,8 +5,9 @@ sealed class AuthEvent {}
 class AuthInitialEvent extends AuthEvent{}
 class LoggedInEvent extends AuthEvent{
   final AppUser user;
+  final UserEntity? userValue;
 
-  LoggedInEvent(this.user);
+  LoggedInEvent(this.user, this.userValue);
 }
 class LogoutEvent extends AuthEvent{}
 class LogInEvent extends AuthEvent{}

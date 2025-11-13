@@ -27,5 +27,13 @@
   "diploma_success_message": "Diploma uploaded successfully, awaiting approval.",
   "diploma_hint": "🩺 You can only upload PDF or image files. After the documents are reviewed, your account will be approved.",
   "diploma_uploading": "Uploading",
-  "diploma_loading_percent": "Loading %{}"
+  "diploma_loading_percent": "Loading %{}",
+  "account_status": "Account Status",
+  "status_approved_title": "Account Approved",
+  "status_approved_message": "Congratulations! You can now use all features of the application.",
+  "status_rejected_title": "Verification Rejected",
+  "status_rejected_message": "Your documents could not be verified. Please upload a valid medical diploma.",
+  "status_pending_title": "Verification Pending",
+  "status_pending_message": "Your medical diploma is being reviewed. The approval process usually takes up to 24 hours.",
+  "refresh_button": "Check Again"
 }
