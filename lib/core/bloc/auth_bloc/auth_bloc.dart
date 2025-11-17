@@ -6,6 +6,7 @@ import 'package:demomanager/core/routes/app_routes.dart';
 import 'package:demomanager/core/services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:demomanager/core/services/firestore_service/firestore_service.dart';
 import 'package:demomanager/core/services/navigator_service/navigator_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_event.dart';
@@ -19,20 +20,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           if (user != null) {
             FirestoreService().usersSnapshotStream(user.uid).listen((value) {
               if (value?.role == AppUserType.doctor) {
-                if(value?.diplomaUrl==null) {
+                if (value?.diplomaUrl == null) {
                   NavigatorService.pushAndRemoveUntil(AppRoutes.upload);
-                }else if(value?.isVerified==false){
+                } else if (value?.isVerified == false) {
                   NavigatorService.pushAndRemoveUntil(AppRoutes.wait);
-                }else if(value?.status==UserStatus.approved){
+                } else if (value?.status == UserStatus.approved) {
                   NavigatorService.pushAndRemoveUntil(AppRoutes.home);
                 }
               } else {
+                FirebaseMessaging.instance.subscribeToTopic(value?.trRegion.name??"");
                 NavigatorService.pushAndRemoveUntil(AppRoutes.home);
               }
-              add(LoggedInEvent(user,value));
+              add(LoggedInEvent(FirebaseAuthService().currentUser ?? user, value));
             });
-
-
           } else {
             NavigatorService.pushAndRemoveUntil(AppRoutes.login);
             add(LogoutEvent());
@@ -42,8 +42,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<LoggedInEvent>((event, emit) {
-      if(event.userValue!=null) {
-        emit(AuthLogin(user: event.user,userValue: event.userValue!));
+      if (event.userValue != null) {
+        emit(AuthLogin(user: event.user, userValue: event.userValue!));
       }
     });
     on<LogInEvent>((event, emit) {});

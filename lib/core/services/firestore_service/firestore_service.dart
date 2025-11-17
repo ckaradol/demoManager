@@ -10,6 +10,9 @@ class FirestoreService {
   Future<void> updateDoctorDiplomaData({required String userId, required String diplomaUrl}) async {
     await _firestore.collection('users').doc(userId).update({'diplomaUrl': diplomaUrl, 'isVerified': false, 'verificationStatus': 'pending'});
   }
+ Future<void> updateUserNameData({required String userId, required String fullName}) async {
+    await _firestore.collection('users').doc(userId).update({'fullName': fullName,});
+  }
 
   Future<void> setUserValue({required String userId, required String email, required String fullName}) async {
     await _firestore.collection('users').doc(userId).set({"role": "doctor", "email": email, "fullName": fullName, 'isVerified': false, 'verificationStatus': 'pending'});

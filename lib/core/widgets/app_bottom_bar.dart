@@ -1,3 +1,4 @@
+import 'package:demomanager/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class AppBottomBar extends StatelessWidget {
@@ -28,12 +29,10 @@ class AppBottomBar extends StatelessWidget {
         showUnselectedLabels: false,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
 
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: "Profil"),
-
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), activeIcon: Icon(Icons.shopping_bag), label: "Siparişler"),
-
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: "Anasayfa"),
+        items:  [
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label:AppStrings.home ),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), activeIcon: Icon(Icons.shopping_bag), label: AppStrings.order),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: AppStrings.profile),
         ],
       ),
     );

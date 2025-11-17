@@ -44,5 +44,21 @@
   "suitable_for": "Suitable For",
   "order_now": "Order Now",
   "home": "Home",
-  "search": "Search"
+  "search": "Search",
+  "order": "My Orders",
+  "profile": "Profile",
+  "language": "English",
+  "change_name_title": "Change Name",
+  "change_name_dialog_title": "Change Your First and Last Name",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+
+  "logout": "Logout",
+  "logout_question": "Do you want to log out?",
+  "logout_cancel": "Cancel",
+  "logout_confirm": "Logout",
+
+  "dark_mode": "Dark Mode",
+  "light_mode": "Light Mode",
+  "system_mode": "System"
 }

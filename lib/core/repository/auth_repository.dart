@@ -24,6 +24,7 @@ abstract class AuthRepository {
 
   /// Google
   Future<AppUser?> signInWithGoogle();
+  Future<void> updateName(String fullName);
 
 
   /// Phone

@@ -82,7 +82,7 @@ class HomeView extends StatelessWidget {
                                     )
                                   else
                                     Expanded(child: SizedBox()),
-                                  Text(data.name, textAlign: TextAlign.center),
+                                  Text(data.name, textAlign: TextAlign.center,maxLines: 2,),
                                 ],
                               ).withGap(AppSpacing.mediumSpace),
                             ),

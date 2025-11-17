@@ -83,5 +83,19 @@ class AppStrings {
   static String get orderNow => "order_now".tr();
   static String get search => "search".tr();
   static String get home => "home".tr();
+  static String get order => "order".tr();
+  static String get profile => "profile".tr();
+  static String get language => "language".tr();
+  static String get changeNameTitle => "change_name_title".tr();
+  static String get changeNameDialogTitle => "change_name_dialog_title".tr();
+  static String get cancel => "cancel".tr();
+  static String get confirm => "confirm".tr();
+  static String get logout => "logout".tr();
+  static String get logoutQuestion => "logout_question".tr();
+  static String get logoutCancel => "logout_cancel".tr();
+  static String get logoutConfirm => "logout_confirm".tr();
+  static String get darkMode => "dark_mode".tr();
+  static String get lightMode => "light_mode".tr();
+  static String get systemMode => "system_mode".tr();
 
 }

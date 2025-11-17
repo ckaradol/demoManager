@@ -44,5 +44,23 @@
   "suitable_for": "Uygun Olduğu Alanlar",
   "order_now": "Sipariş Ver",
   "home": "Anasayfa",
-  "search": "Ara"
+  "search": "Ara",
+  "order": "Siparişlerim",
+  "profile": "Profil",
+  "language": "Türkçe",
+  "change_name_title": "İsmini Değiştir",
+  "change_name_dialog_title": "İsmini ve Soyismini Değiştir",
+  "cancel": "İptal",
+  "confirm": "Onayla",
+
+  "logout": "Çıkış Yap",
+  "logout_question": "Çıkış yapmak istiyor musun?",
+  "logout_cancel": "İptal Et",
+  "logout_confirm": "Çıkış Yap",
+
+  "dark_mode": "Karanlık Mod",
+  "light_mode": "Aydınlık Mod",
+  "system_mode": "Sistem"
+
+
 }

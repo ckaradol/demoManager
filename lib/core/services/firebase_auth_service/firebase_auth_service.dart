@@ -63,6 +63,14 @@ class FirebaseAuthService implements AuthRepository {
     } on fb.FirebaseAuthException catch (e) {
       showToast("Error", e.message ?? "", true);
     }
+  }@override
+  Future<void> updateName(String fullName) async {
+    try {
+      await _auth.currentUser?.updateDisplayName(fullName);
+      _auth.currentUser?.reload();
+    } on fb.FirebaseAuthException catch (e) {
+      showToast("Error", e.message ?? "", true);
+    }
   }
 
   @override
