@@ -74,28 +74,60 @@ class AppStrings {
   static String get statusPendingMessage => "status_pending_message".tr();
 
   static String get refreshButton => "refresh_button".tr();
+
   static String get resetMyPassword => "reset_my_password".tr();
+
   static String get resetPasswordSuccess => "reset_password_success".tr();
+
   static String get description => "description".tr();
+
   static String get contents => "contents".tr();
+
   static String get usage => "usage".tr();
+
   static String get suitableFor => "suitable_for".tr();
+
   static String get orderNow => "order_now".tr();
+
   static String get search => "search".tr();
+
   static String get home => "home".tr();
+
   static String get order => "order".tr();
+
   static String get profile => "profile".tr();
+
   static String get language => "language".tr();
+
   static String get changeNameTitle => "change_name_title".tr();
+
   static String get changeNameDialogTitle => "change_name_dialog_title".tr();
+
   static String get cancel => "cancel".tr();
+
   static String get confirm => "confirm".tr();
+
   static String get logout => "logout".tr();
+
   static String get logoutQuestion => "logout_question".tr();
+
   static String get logoutCancel => "logout_cancel".tr();
+
   static String get logoutConfirm => "logout_confirm".tr();
+
   static String get darkMode => "dark_mode".tr();
+
   static String get lightMode => "light_mode".tr();
+
   static String get systemMode => "system_mode".tr();
 
+  static String get createSale => "create_sale".tr();
+
+  static String get selectCity => "select_city".tr();
+
+  static String get region => "region".tr();
+
+  static String get descriptionOptional => "description_optional".tr();
+
+  static String get confirmSale => "confirm_sale".tr();
 }

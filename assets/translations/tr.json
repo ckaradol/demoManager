@@ -52,15 +52,16 @@
   "change_name_dialog_title": "İsmini ve Soyismini Değiştir",
   "cancel": "İptal",
   "confirm": "Onayla",
-
   "logout": "Çıkış Yap",
   "logout_question": "Çıkış yapmak istiyor musun?",
   "logout_cancel": "İptal Et",
   "logout_confirm": "Çıkış Yap",
-
   "dark_mode": "Karanlık Mod",
   "light_mode": "Aydınlık Mod",
-  "system_mode": "Sistem"
-
-
+  "system_mode": "Sistem",
+  "create_sale": "Satış Oluştur",
+  "select_city": "İl Seçin",
+  "region": "Bölge",
+  "description_optional": "Açıklama (Opsiyonel)",
+  "confirm_sale": "Onayla"
 }

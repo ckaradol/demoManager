@@ -6,29 +6,18 @@ import '../../core/bloc/product_bloc/product_bloc.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/enums/app/app_spacing.dart';
 import '../../core/routes/app_routes.dart';
-import '../../core/services/firebase_auth_service/firebase_auth_service.dart';
 import '../../core/services/navigator_service/navigator_service.dart';
 import '../../core/widgets/app_categories.dart';
 import '../../core/widgets/app_text_form_field.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({
-    super.key,
-  });
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () {
-              FirebaseAuthService().signOut();
-            },
-            icon: Icon(Icons.logout, color: Theme.of(context).colorScheme.onSurface),
-          ),
-        ],
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(AppStrings.home, style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
       ),
@@ -61,8 +50,8 @@ class HomeView extends StatelessWidget {
                       for (var data in state.products)
                         InkWell(
                           borderRadius: BorderRadius.circular(12),
-                          onTap: (){
-                            NavigatorService.pushNamed(AppRoutes.productDetail,arguments: data);
+                          onTap: () {
+                            NavigatorService.pushNamed(AppRoutes.productDetail, arguments: data);
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -82,7 +71,7 @@ class HomeView extends StatelessWidget {
                                     )
                                   else
                                     Expanded(child: SizedBox()),
-                                  Text(data.name, textAlign: TextAlign.center,maxLines: 2,),
+                                  Text(data.name, textAlign: TextAlign.center, maxLines: 2),
                                 ],
                               ).withGap(AppSpacing.mediumSpace),
                             ),

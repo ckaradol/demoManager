@@ -7,6 +7,7 @@ import 'commission_model.dart';
 
 class ProductModel extends Equatable {
   final String id;
+  final String docId;
   final String name;
   final String category;
   final String description;
@@ -20,7 +21,8 @@ class ProductModel extends Equatable {
   final ProductAttributes attributes;
   final String status;
 
-  ProductModel({
+  const ProductModel({
+    required this.docId,
     required this.id,
     required this.name,
     required this.category,
@@ -36,7 +38,7 @@ class ProductModel extends Equatable {
     required this.status,
   });
 
-  factory ProductModel.fromMap(Map<String, dynamic> map) {
+  factory ProductModel.fromMap(Map<String, dynamic> map,String docId) {
     return ProductModel(
       id: map['id'] ?? '',
       name: map['name'] ?? '',
@@ -50,10 +52,9 @@ class ProductModel extends Equatable {
       regionDistribution: RegionDistribution.fromMap(map['regionDistribution'] ?? {}),
       commission: Commission.fromMap(map['commission'] ?? {}),
       attributes: ProductAttributes.fromMap(map['attributes'] ?? {}),
-      status: map['status'] ?? 'inactive',
+      status: map['status'] ?? 'inactive', docId: docId,
     );
   }
-
 
   Map<String, dynamic> toMap() {
     return {
@@ -75,7 +76,5 @@ class ProductModel extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [id,name,category,price,description,images,unit,stock,status,regionDistribution,commission,attributes];
-
-
+  List<Object?> get props => [id, name, category, price, description, images, unit, stock, status, regionDistribution, commission, attributes];
 }

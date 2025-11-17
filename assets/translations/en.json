@@ -52,13 +52,16 @@
   "change_name_dialog_title": "Change Your First and Last Name",
   "cancel": "Cancel",
   "confirm": "Confirm",
-
   "logout": "Logout",
   "logout_question": "Do you want to log out?",
   "logout_cancel": "Cancel",
   "logout_confirm": "Logout",
-
   "dark_mode": "Dark Mode",
   "light_mode": "Light Mode",
-  "system_mode": "System"
+  "system_mode": "System",
+  "create_sale": "Create Sale",
+  "select_city": "Select City",
+  "region": "Region",
+  "description_optional": "Description (Optional)",
+  "confirm_sale": "Confirm"
 }

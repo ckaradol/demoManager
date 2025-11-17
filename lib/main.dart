@@ -1,12 +1,14 @@
 import 'package:demomanager/core/bloc/auth_bloc/auth_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toastification/toastification.dart';
 
 import 'core/bloc/theme_cubit/theme_cubit.dart';
 import 'core/constants/app_translate.dart';
+import 'core/helper/flutter_local_notifications.dart';
 import 'core/routes/app_router.dart';
 import 'core/routes/app_routes.dart';
 import 'core/services/navigator_service/navigator_service.dart';
@@ -30,10 +32,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-      AuthBloc()
-        ..add(AuthInitialEvent()),
-      child: BlocBuilder<AuthBloc, AuthState>(
+      create: (context) => AuthBloc()..add(AuthInitialEvent()),
+      child: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthLogin) {
+            initNotifications(context);
+            FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+              showNotification(message);
+            });
+            FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {});
+          }
+        },
         builder: (context, state) {
           return BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (context, state) {

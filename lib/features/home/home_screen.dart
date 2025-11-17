@@ -1,3 +1,6 @@
+import 'package:demomanager/core/bloc/auth_bloc/auth_bloc.dart';
+import 'package:demomanager/core/enums/app/app_user_type.dart';
+import 'package:demomanager/features/home/home_view_sales.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthState authState = context.read<AuthBloc>().state;
     return BlocProvider(
       create: (context) => PageCubit(),
       child: BlocBuilder<PageCubit, int>(
@@ -23,7 +27,15 @@ class HomeScreen extends StatelessWidget {
                 context.read<PageCubit>().setPage(p1);
               },
             ),
-            body: PageView(controller: context.read<PageCubit>().controller, children: [HomeView(), OrderView(), ProfileView()]),
+            body: PageView(
+              controller: context.read<PageCubit>().controller,
+              children: [
+                if (authState is AuthLogin)
+                  if (authState.userValue.role == AppUserType.doctor) HomeView() else HomeViewSales(),
+                OrderView(),
+                ProfileView(),
+              ],
+            ),
           );
         },
       ),

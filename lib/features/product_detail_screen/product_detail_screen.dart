@@ -3,14 +3,20 @@ import 'package:demomanager/core/constants/app_strings.dart';
 import 'package:demomanager/core/enums/app/app_spacing.dart';
 import 'package:demomanager/core/extensions/app/app_column_gap_ext.dart';
 import 'package:demomanager/core/models/product_model.dart';
-import 'package:demomanager/core/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/helper/locations.dart';
 import '../../core/services/navigator_service/navigator_service.dart';
+import '../../core/widgets/sales_model_bottom.dart';
 
-class ProductDetailScreen extends StatelessWidget {
+class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
+
+  @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  int count = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -80,22 +86,51 @@ class ProductDetailScreen extends StatelessWidget {
         ).withGap(AppSpacing.defaultSpace),
       ),
 
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SizedBox(
-          height: 54,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: theme.colorScheme.primary),
+      bottomNavigationBar: Row(
+        children: [
+          IconButton(
             onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                backgroundColor: Colors.transparent,
-                builder: (context) => SalesModalBottom(productModel: args),
-              );
+              if (args.stock.total > count) {
+                count += 1;
+              }
+              setState(() {});
             },
-            child: Text("${args.price.toStringAsFixed(2)} ${args.currency}", style: TextStyle(color: theme.colorScheme.onPrimary)),
+            icon: Icon(Icons.keyboard_arrow_up_outlined),
           ),
-        ),
+          Text("$count"),
+          IconButton(
+            onPressed: () {
+              if (count > 1) {
+                count -= 1;
+              }
+              setState(() {});
+            },
+            icon: Icon(Icons.keyboard_arrow_down_outlined),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                height: 54,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: theme.colorScheme.primary),
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
+                      builder: (context) => Padding(
+                        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                        child: SalesModalBottom(productModel: args, count: count,),
+                      ),
+                    );
+                  },
+                  child: Text("${(args.price*count).toStringAsFixed(2)} ${args.currency}", style: TextStyle(color: theme.colorScheme.onPrimary)),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -113,94 +148,6 @@ class ProductDetailScreen extends StatelessWidget {
           const SizedBox(width: 10),
           Text(text, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
         ],
-      ),
-    );
-  }
-}
-
-class SalesModalBottom extends StatefulWidget {
-  final ProductModel productModel;
-
-  const SalesModalBottom({super.key, required this.productModel});
-
-  @override
-  State<SalesModalBottom> createState() => _SalesModalBottomState();
-}
-
-class _SalesModalBottomState extends State<SalesModalBottom> {
-  String? selectedIl;
-  final TextEditingController productController = TextEditingController();
-  final TextEditingController qtyController = TextEditingController();
-  final TextEditingController noteController = TextEditingController();
-
-  TRRegion? selectedRegion;
-
-  final iller = ilToRegion.keys.toList()..sort();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.defaultSpace),
-        child: StatefulBuilder(
-          builder: (context, setState) {
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(height: 12),
-
-                  Text("Satış Oluştur", style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 20),
-
-                  DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(labelText: "İl Seçin", border: OutlineInputBorder()),
-                    items: iller.map((il) {
-                      return DropdownMenuItem(value: il, child: Text(il));
-                    }).toList(),
-                    value: selectedIl,
-                    onChanged: (val) {
-                      setState(() {
-                        selectedIl = val;
-                        selectedRegion = ilToRegion[val];
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 15),
-
-                  if (selectedRegion != null)
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      width: double.infinity,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Theme.of(context).colorScheme.surfaceContainerHighest),
-                      child: Text("Bölge: ${selectedRegion.toString().split('.').last}", style: Theme.of(context).textTheme.bodyLarge),
-                    ),
-                  const SizedBox(height: 15),
-
-                  TextField(
-                    controller: noteController,
-                    decoration: const InputDecoration(labelText: "Açıklama (Opsiyonel)", border: OutlineInputBorder()),
-                    maxLines: 2,
-                  ),
-                  const SizedBox(height: 30),
-
-                  AppButton(
-                    text: "Onayla",
-                    onTap: () {
-
-                    },
-                  ),
-
-                  const SizedBox(height: 20),
-                ],
-              ),
-            );
-          },
-        ),
       ),
     );
   }

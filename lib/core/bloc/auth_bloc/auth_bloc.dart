@@ -9,6 +9,8 @@ import 'package:demomanager/core/services/navigator_service/navigator_service.da
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:meta/meta.dart';
 
+import '../../helper/flutter_local_notifications.dart';
+
 part 'auth_event.dart';
 part 'auth_state.dart';
 
@@ -18,6 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       Future.delayed(Duration(seconds: 1)).then((_) {
         FirebaseAuthService().authStateChanges().listen((user) {
           if (user != null) {
+
             FirestoreService().usersSnapshotStream(user.uid).listen((value) {
               if (value?.role == AppUserType.doctor) {
                 if (value?.diplomaUrl == null) {
