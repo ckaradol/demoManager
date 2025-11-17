@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demomanager/core/bloc/auth_bloc/auth_bloc.dart';
-import 'package:demomanager/core/helper/database_refresh.dart';
 import 'package:demomanager/core/services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:demomanager/core/services/navigator_service/navigator_service.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -94,7 +92,6 @@ class ProfileView extends StatelessWidget {
             title: Text(AppStrings.logout),
             trailing: Icon(Icons.logout),
           ),
-
         ],
       ),
     );
