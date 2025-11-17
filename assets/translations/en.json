@@ -63,5 +63,15 @@
   "select_city": "Select City",
   "region": "Region",
   "description_optional": "Description (Optional)",
-  "confirm_sale": "Confirm"
+  "confirm_sale": "Confirm",
+  "sales_panel": "Sales Panel",
+  "total_order": "Total Orders",
+  "piece": "pcs",
+  "total_revenue": "Total Revenue",
+  "total_commission": "Earned Commission",
+  "order_list": "Order List",
+  "order_text": "Order",
+  "date": "Date",
+  "doctor_sale": "Doctor Sale",
+  "disapprove": "Disapprove"
 }

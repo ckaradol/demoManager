@@ -63,5 +63,15 @@
   "select_city": "İl Seçin",
   "region": "Bölge",
   "description_optional": "Açıklama (Opsiyonel)",
-  "confirm_sale": "Onayla"
+  "confirm_sale": "Onayla",
+  "sales_panel": "Satış Paneli",
+  "total_order": "Toplam Sipariş",
+  "piece": "adet",
+  "total_revenue": "Toplam Ciro",
+  "total_commission": "Kazanılan Prim",
+  "order_list": "Sipariş Listesi",
+  "order_text": "Sipariş",
+  "date": "Tarih",
+  "doctor_sale": "Doktor Satışı",
+  "disapprove": "Onaylama"
 }

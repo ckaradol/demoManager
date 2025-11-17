@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/bloc/theme_cubit/theme_cubit.dart';
 import '../../core/constants/app_strings.dart';
+import '../../core/helper/change_language.dart';
 import '../../core/widgets/change_name.dart';
 
 class ProfileView extends StatelessWidget {
@@ -33,13 +34,7 @@ class ProfileView extends StatelessWidget {
             ),
           ListTile(
             onTap: () async {
-              final current = context.locale.languageCode;
-
-              if (current == "tr") {
-                await context.setLocale(const Locale('en'));
-              } else {
-                await context.setLocale(const Locale('tr'));
-              }
+              changeLanguage(context);
             },
             title: Text(AppStrings.language),
             trailing: Text(context.locale.languageCode == "tr" ? "🇹🇷" : "🇬🇧"),

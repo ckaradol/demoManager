@@ -16,7 +16,7 @@ class UserEntity {
 
   UserEntity({required this.id, required this.trRegion, required this.email, required this.fullName, required this.role, required this.isVerified, required this.status, required this.diplomaUrl});
 
-  static UserStatus _statusFromString(String value) {
+  static UserStatus _statusFromString(String? value) {
     switch (value) {
       case "approved":
         return UserStatus.approved;
@@ -38,7 +38,7 @@ class UserEntity {
     }
   }
 
-  static AppUserType _roleFromString(String value) {
+  static AppUserType _roleFromString(String? value) {
     switch (value) {
       case "doctor":
         return AppUserType.doctor;
@@ -49,7 +49,7 @@ class UserEntity {
     }
   }
 
-  static TRRegion _regionFromString(String value) {
+  static TRRegion _regionFromString(String? value) {
     switch (value) {
       case "Akdeniz":
         return TRRegion.Akdeniz;

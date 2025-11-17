@@ -23,7 +23,6 @@ class UploadDiploma extends StatelessWidget {
         listener: (context, state) {
           if (state is DiplomaUploaded) {
             showToast(AppStrings.diplomaSuccessTitle, AppStrings.diplomaSuccessMessage, false);
-            NavigatorService.pushAndRemoveUntil(AppRoutes.home);
           }
         },
         builder: (context, state) {

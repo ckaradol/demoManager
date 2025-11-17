@@ -2,6 +2,7 @@ import 'package:demomanager/core/bloc/auth_bloc/auth_bloc.dart';
 import 'package:demomanager/core/bloc/diploma_upload_cubit/diploma_upload_cubit.dart';
 import 'package:demomanager/core/enums/app/app_spacing.dart';
 import 'package:demomanager/core/extensions/app/app_column_gap_ext.dart';
+import 'package:demomanager/core/services/firestore_service/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,9 +20,13 @@ class VerificationWaitScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) => DiplomaUploadCubit(repository: DiplomaService()),
       child: Scaffold(
-        appBar: AppBar(title: Text(AppStrings.accountStatus,style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)), elevation: 0, backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+        appBar: AppBar(
+          title: Text(AppStrings.accountStatus, style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
+          elevation: 0,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        ),
         body: Padding(
-          padding:  EdgeInsets.all(AppSpacing.defaultSpace),
+          padding: EdgeInsets.all(AppSpacing.defaultSpace),
           child: Builder(
             builder: (context) {
               if (authState is! AuthLogin) {
@@ -29,16 +34,28 @@ class VerificationWaitScreen extends StatelessWidget {
               }
 
               if (authState.userValue.status == UserStatus.approved) {
-                return _buildStatus(icon: Icons.verified, color: Colors.green, title: AppStrings.statusApprovedTitle, message: AppStrings.statusApprovedMessage);
+                return _buildStatus(context: context, icon: Icons.verified, color: Colors.green, title: AppStrings.statusApprovedTitle, message: AppStrings.statusApprovedMessage);
               }
 
               if (authState.userValue.status == UserStatus.rejected) {
                 return _buildStatus(
-                    diplomaUpload: true,
-                    icon: Icons.error_outline, color: Colors.red, title: AppStrings.statusRejectedTitle, message: AppStrings.statusRejectedMessage);
+                  context: context,
+                  diplomaUpload: true,
+                  icon: Icons.error_outline,
+                  color: Colors.red,
+                  title: AppStrings.statusRejectedTitle,
+                  message: AppStrings.statusRejectedMessage,
+                );
               }
 
-              return _buildStatus(icon: Icons.hourglass_top, color: Colors.amber.shade800, title: AppStrings.statusPendingTitle, message: AppStrings.statusPendingMessage);
+              return _buildStatus(
+                context: context,
+                isPending: true,
+                icon: Icons.hourglass_top,
+                color: Colors.amber.shade800,
+                title: AppStrings.statusPendingTitle,
+                message: AppStrings.statusPendingMessage,
+              );
             },
           ),
         ),
@@ -46,7 +63,7 @@ class VerificationWaitScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStatus({required IconData icon, required Color color, required String title, required String message,bool? diplomaUpload}) {
+  Widget _buildStatus({required IconData icon, required Color color, required String title, required String message, bool? diplomaUpload, bool isPending = false, required BuildContext context}) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -58,8 +75,23 @@ class VerificationWaitScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Text(message, style: const TextStyle(fontSize: 16), textAlign: TextAlign.center),
-          if(diplomaUpload==true)
-          UploadDiploma(),
+          if (diplomaUpload == true) UploadDiploma(),
+          if (isPending)
+            ElevatedButton(
+              onPressed: () {
+                AuthState authState = context.read<AuthBloc>().state;
+                if (authState is AuthLogin) FirestoreService().updateUserApprovedData(userId: authState.user.uid);
+              },
+              child: Text(AppStrings.confirm),
+            ) ,
+          if(isPending)
+          ElevatedButton(
+              onPressed: () {
+                AuthState authState = context.read<AuthBloc>().state;
+                if (authState is AuthLogin) FirestoreService().updateUserRejectedData(userId: authState.user.uid);
+              },
+              child: Text(AppStrings.disapprove),
+            ),
         ],
       ).withGap(AppSpacing.largeSpace),
     );

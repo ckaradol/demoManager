@@ -66,6 +66,7 @@ class AppStrings {
   static String get statusApprovedMessage => "status_approved_message".tr();
 
   static String get statusRejectedTitle => "status_rejected_title".tr();
+  static String get disapprove => "disapprove".tr();
 
   static String get statusRejectedMessage => "status_rejected_message".tr();
 
@@ -130,4 +131,14 @@ class AppStrings {
   static String get descriptionOptional => "description_optional".tr();
 
   static String get confirmSale => "confirm_sale".tr();
+  static String get salesPanel => "sales_panel".tr();
+  static String get totalOrder => "total_order".tr();
+  static String get piece => "piece".tr();
+  static String get totalRevenue => "total_revenue".tr();
+  static String get totalCommission => "total_commission".tr();
+  static String get orderList => "order_list".tr();
+  static String get orderText => "order_text".tr();
+  static String get date => "date".tr();
+  static String get doctorSale => "doctor_sale".tr();
+
 }

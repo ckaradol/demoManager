@@ -17,6 +17,14 @@ class FirestoreService {
     await _firestore.collection('users').doc(userId).update({'fullName': fullName});
   }
 
+  Future<void> updateUserApprovedData({required String userId}) async {
+    await _firestore.collection('users').doc(userId).update({'isVerified': true, 'verificationStatus': 'approved'});
+  }
+
+  Future<void> updateUserRejectedData({required String userId}) async {
+    await _firestore.collection('users').doc(userId).update({'isVerified': false, 'verificationStatus': 'rejected'});
+  }
+
   Future<void> updateOrderData({required String docId, required String saleId}) async {
     await _firestore.collection('order').doc(docId).update({'saleId': saleId});
   }
