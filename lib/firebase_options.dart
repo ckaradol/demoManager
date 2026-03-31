@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBm8-2kHBtmFeT5DtpsaY4YfndbdM8Orsk',
-    appId: '1:1015054323027:android:a0258d34a36b36c09f25a6',
-    messagingSenderId: '1015054323027',
-    projectId: 'fir-778de',
-    storageBucket: 'fir-778de.firebasestorage.app',
+    apiKey: 'AIzaSyAVACU7jIgAvto5reSU7FOcILGeR2IsYBo',
+    appId: '1:272187318534:android:799a5ea1daec2d330dfe87',
+    messagingSenderId: '272187318534',
+    projectId: 'fir-22d00',
+    storageBucket: 'fir-22d00.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC--GwavUNrj7JAboVQ2uxaSFDm6N1hPT4',
-    appId: '1:1015054323027:ios:f99bcbb66afc9d819f25a6',
-    messagingSenderId: '1015054323027',
-    projectId: 'fir-778de',
-    storageBucket: 'fir-778de.firebasestorage.app',
+    apiKey: 'AIzaSyBdvpTuGIH8kEswlr09UWqIf76aQLGsRnY',
+    appId: '1:272187318534:ios:61508d0f4c3dc3b50dfe87',
+    messagingSenderId: '272187318534',
+    projectId: 'fir-22d00',
+    storageBucket: 'fir-22d00.firebasestorage.app',
     iosBundleId: 'com.softmobileware.demomanager',
   );
+
 }

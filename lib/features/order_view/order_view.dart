@@ -18,46 +18,37 @@ class OrderView extends StatelessWidget {
         elevation: 0,
         title: Text(AppStrings.order, style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
       ),
-      body: BlocProvider(
-        create: (context) {
-          if (authState is AuthLogin) {
-            return OrderBloc()..add(OrderInitialEvent(userId: authState.user.uid, region: authState.userValue.role == AppUserType.sales ? authState.userValue.trRegion.name : null));
-          } else {
-            return OrderBloc();
-          }
-        },
-        child: BlocBuilder<OrderBloc, OrderState>(
-          builder: (context, state) {
-            if (state is OrderLoad) {
-              return ListView(
-                children: [
-                  for (var data in state.sales)
-                    ListTile(
-                      leading: Container(
-                        width: 70,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          image: DecorationImage(image: NetworkImage(data.product?.images.first ?? ""), fit: BoxFit.cover),
-                        ),
-                      ),
-                      title: Text(data.product?.name ?? "", maxLines: 1, overflow: TextOverflow.ellipsis),
-                      subtitle: Text("${data.count}"),
-                      trailing: ElevatedButton(
-                        onPressed: () {
-                          if (authState is AuthLogin) {
-                            FirestoreService().updateOrderData(docId: data.id, saleId: authState.userValue.id);
-                          }
-                        },
-                        child: Text("Teslim Et"),
+      body: BlocBuilder<OrderBloc, OrderState>(
+        builder: (context, state) {
+          if (state is OrderLoad) {
+            return ListView(
+              children: [
+                for (var data in state.sales)
+                  ListTile(
+                    leading: Container(
+                      width: 70,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image:data.product?.images.isNotEmpty==true? DecorationImage(image: NetworkImage(data.product?.images.first ?? ""), fit: BoxFit.cover):null,
                       ),
                     ),
-                ],
-              );
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
+                    title: Text(data.product?.name ?? "", maxLines: 1, overflow: TextOverflow.ellipsis),
+                    subtitle: Text("${data.count}"),
+                    trailing: ElevatedButton(
+                      onPressed: () {
+                        if (authState is AuthLogin) {
+                          FirestoreService().updateOrderData(docId: data.id, saleId: authState.userValue.id);
+                        }
+                      },
+                      child: Text("Teslim Et"),
+                    ),
+                  ),
+              ],
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }

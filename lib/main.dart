@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toastification/toastification.dart';
 
+import 'core/bloc/order_bloc/order_bloc.dart';
+import 'core/bloc/product_bloc/product_bloc.dart';
 import 'core/bloc/theme_cubit/theme_cubit.dart';
 import 'core/constants/app_translate.dart';
+import 'core/enums/app/app_user_type.dart';
 import 'core/helper/flutter_local_notifications.dart';
 import 'core/routes/app_router.dart';
 import 'core/routes/app_routes.dart';
@@ -21,7 +24,12 @@ Future<void> main() async {
   runApp(
     BlocProvider(
       create: (_) => ThemeCubit(),
-      child: EasyLocalization(supportedLocales: AppTranslate.supportedLocales, path: AppTranslate.assetLocations, fallbackLocale: AppTranslate.fallBackLocale, child: MyApp()),
+      child: EasyLocalization(
+        supportedLocales: AppTranslate.supportedLocales,
+        path: AppTranslate.assetLocations,
+        fallbackLocale: AppTranslate.fallBackLocale,
+        child: MyApp(),
+      ),
     ),
   );
 }
@@ -31,8 +39,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthBloc()..add(AuthInitialEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthBloc()..add(AuthInitialEvent())),
+        BlocProvider(
+          create: (context) {
+            return OrderBloc();
+          },
+        ),
+        BlocProvider(
+          create: (context) => ProductBloc()..add(ProductInitialEvent()),
+        ),
+      ],
       child: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthLogin) {
@@ -40,7 +58,17 @@ class MyApp extends StatelessWidget {
             FirebaseMessaging.onMessage.listen((RemoteMessage message) {
               showNotification(message);
             });
-            FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {});
+            FirebaseMessaging.onMessageOpenedApp.listen(
+              (RemoteMessage message) {},
+            );
+            context.read<OrderBloc>().add(
+              OrderInitialEvent(
+                userId: state.user.uid,
+                region: state.userValue.role == AppUserType.sales
+                    ? state.userValue.trRegion.name
+                    : null,
+              ),
+            );
           }
         },
         builder: (context, state) {
@@ -59,13 +87,18 @@ class MyApp extends StatelessWidget {
                   darkTheme: ThemeData(
                     fontFamily: "Rubik",
                     useMaterial3: false,
-                    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff0063E6), brightness: Brightness.dark),
+                    colorScheme: ColorScheme.fromSeed(
+                      seedColor: Color(0xff0063E6),
+                      brightness: Brightness.dark,
+                    ),
                   ),
                   themeMode: state,
                   theme: ThemeData(
                     fontFamily: "Rubik",
                     useMaterial3: false,
-                    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff0063E6)),
+                    colorScheme: ColorScheme.fromSeed(
+                      seedColor: Color(0xff0063E6),
+                    ),
                   ),
                 ),
               );

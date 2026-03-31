@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demomanager/core/bloc/auth_bloc/auth_bloc.dart';
 import 'package:demomanager/core/services/firebase_auth_service/firebase_auth_service.dart';
 import 'package:demomanager/core/services/navigator_service/navigator_service.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/bloc/theme_cubit/theme_cubit.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/helper/change_language.dart';
+import '../../core/helper/database_refresh.dart';
 import '../../core/widgets/change_name.dart';
 
 class ProfileView extends StatelessWidget {
@@ -20,14 +22,20 @@ class ProfileView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        title: Text(AppStrings.profile, style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
+        title: Text(
+          AppStrings.profile,
+          style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
+        ),
       ),
       body: ListView(
         children: [
           if (authState is AuthLogin)
             ListTile(
               onTap: () {
-                showDialog(context: context, builder: (context) => ChangeName());
+                showDialog(
+                  context: context,
+                  builder: (context) => ChangeName(),
+                );
               },
               title: Text(authState.userValue.fullName),
               trailing: Icon(Icons.arrow_forward_ios_sharp),
@@ -37,12 +45,18 @@ class ProfileView extends StatelessWidget {
               changeLanguage(context);
             },
             title: Text(AppStrings.language),
-            trailing: Text(context.locale.languageCode == "tr" ? "🇹🇷" : "🇬🇧"),
+            trailing: Text(
+              context.locale.languageCode == "tr" ? "🇹🇷" : "🇬🇧",
+            ),
           ),
           ListTile(
             onTap: () {
               context.read<ThemeCubit>().setTheme(
-                context.read<ThemeCubit>().state == ThemeMode.dark ? ThemeMode.light : (context.read<ThemeCubit>().state == ThemeMode.light ? ThemeMode.system : ThemeMode.dark),
+                context.read<ThemeCubit>().state == ThemeMode.dark
+                    ? ThemeMode.light
+                    : (context.read<ThemeCubit>().state == ThemeMode.light
+                          ? ThemeMode.system
+                          : ThemeMode.dark),
               );
             },
             title: Text(
